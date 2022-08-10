@@ -12,28 +12,33 @@ refs.input.addEventListener('input', onMailInput);
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  console.log(formData);
+  console.log({
+    email: refs.input.value,
+    message: refs.textarea.value,
+  });
   evt.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
 }
-let formData = {};
+const formData = {
+  email: refs.input.value,
+  message: refs.textarea.value,
+};
+
 function onTextareaInput(evt) {
-  const message = evt.target.value;
-  formData.message = message;
+  formData.message = evt.target.value;
   throttle(saveFormData(), 500);
 }
 
 function onMailInput(evt) {
-  const email = evt.target.value;
-  formData.email = email;
+  formData.email = evt.target.value;
   throttle(saveFormData(), 500);
 }
 function saveFormData() {
-  console.log(formData);
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 }
+
+const formValue = JSON.parse(localStorage.getItem('feedback-form-state'));
 function inputSaveFormData() {
-  const formValue = JSON.parse(localStorage.getItem('feedback-form-state'));
   if (formValue) {
     refs.input.value = formValue.email;
     refs.textarea.value = formValue.message;
