@@ -17,7 +17,7 @@ function onFormSubmit(evt) {
     message: refs.textarea.value,
   });
   evt.currentTarget.reset();
-  localStorage.clear();
+  localStorage.clear('feedback-form-state');
 }
 const formData = {
   email: refs.input.value,
