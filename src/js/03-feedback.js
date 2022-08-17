@@ -11,7 +11,7 @@ refs.form.addEventListener('input', onInputValue);
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  console.log(formData);
+  console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
   evt.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
 }
